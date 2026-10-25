@@ -19,7 +19,7 @@
 <meta property="og:description" content="โรงพยาบาลจิตเวชมนารมย์ ดูแลสุขภาพจิตทุกช่วงวัย ย่านบางนา สุขุมวิท 70/3 โดยจิตแพทย์และทีมสหวิชาชีพ">
 <meta property="og:image" content="https://www.manarom.com/assets/img/photos/garden-lounge.jpg">
 <meta property="og:url" content="https://www.manarom.com/index.html">
-<link rel="stylesheet" href="assets/css/index-2570.css">
+<link rel="stylesheet" href="assets/css/index-2570.css?v=20261025f">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -42,11 +42,24 @@
     {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"07:00","closes":"20:00"}
   ],
   "medicalSpecialty": "Psychiatric",
+  "hasMap": "https://www.google.com/maps/search/?api=1&query=Manarom+Hospital+Sukhumvit+70%2F3",
   "sameAs": [
     "https://www.facebook.com/ManaromHospital",
     "https://www.youtube.com/user/ManaromCenter",
     "https://www.instagram.com/manaromhospital",
     "https://www.tiktok.com/@manaromhospital"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"มาใช้บริการโรงพยาบาลมนารมย์ครั้งแรก ต้องทำอย่างไรบ้าง","acceptedAnswer":{"@type":"Answer","text":"กรุณานัดหมายล่วงหน้า ติดต่อแผนกเวชระเบียน โทร 02-725-9592 นำบัตรประชาชนมาด้วย และมาก่อนเวลานัดอย่างน้อย 15 นาที"}},
+    {"@type":"Question","name":"มาใช้บริการโรงพยาบาลมนารมย์โดยไม่ได้นัดหมาย (Walk in) ได้ไหม","acceptedAnswer":{"@type":"Answer","text":"ได้ค่ะ แต่อาจได้รับบริการช้ากว่าผู้ที่นัดหมายล่วงหน้า"}},
+    {"@type":"Question","name":"โรงพยาบาลมนารมย์เปิดให้บริการเวลาใด","acceptedAnswer":{"@type":"Answer","text":"แผนกผู้ป่วยนอก เปิด 07:00–20:00 น. แผนกฉุกเฉิน เปิด 24 ชั่วโมง"}},
+    {"@type":"Question","name":"กังวลเรื่องค่าใช้จ่ายในการรักษาและบริการ ต้องทำอย่างไร","acceptedAnswer":{"@type":"Answer","text":"ค่าใช้จ่ายขึ้นอยู่กับประเภทการรักษา ดูอัตราค่าบริการผู้ป่วยนอกและผู้ป่วยในได้ที่หน้าอัตราค่าบริการ หรือสอบถามค่าใช้จ่ายเบื้องต้นได้ที่ 02-725-9595"}}
   ]
 }
 </script>
@@ -80,14 +93,13 @@
         <span class="h25-book__label">นัดหมายแพทย์</span>
       </a>
 
+      <button class="h25-iconbtn" type="button" data-h25-mobile-search aria-label="ค้นหา">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      </button>
       <span class="h25-lang" role="group" aria-label="เลือกภาษา">
         <a href="index.html" lang="th" hreflang="th" aria-current="true">TH</a>
         <a href="en/index.html" lang="en" hreflang="en">EN</a>
       </span>
-
-      <button class="h25-iconbtn" type="button" data-h25-mobile-search aria-label="ค้นหา">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-      </button>
       <button class="h25-burger" type="button" aria-label="เปิดเมนู" aria-expanded="false" aria-controls="h25-drawer"><span></span></button>
     </div>
   </div>
@@ -156,9 +168,15 @@
 <div class="h25-drawer" id="h25-drawer" aria-hidden="true">
   <div class="h25-drawer__scrim"></div>
   <div class="h25-drawer__panel">
-    <button class="h25-drawer__close" type="button" aria-label="ปิดเมนู">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-    </button>
+    <div class="h25-drawer__head">
+      <span class="h25-lang" role="group" aria-label="เลือกภาษา (เมนู)">
+        <a href="index.html" lang="th" hreflang="th" aria-current="true">TH</a>
+        <a href="en/index.html" lang="en" hreflang="en">EN</a>
+      </span>
+      <button class="h25-drawer__close" type="button" aria-label="ปิดเมนู">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
     <nav aria-label="เมนูหลัก (มือถือ)">
       <ul>
         <li><a href="index.html" aria-current="page">หน้าหลัก</a></li>
@@ -206,7 +224,7 @@
   </div>
 </div>
 
-<!-- ===================== Main (ส่วนที่ 6–8 รอทำถัดไป) ===================== -->
+<!-- ===================== Main ===================== -->
 <main id="main" class="p2570">
   <!-- ===================== Hero (ส่วนที่ 2) ===================== -->
   <section class="h25-hero" aria-labelledby="h25-hero-title">
@@ -454,10 +472,170 @@
     </div>
   </div>
 
-  <!-- คลังความรู้, FAQ+แผนที่, โซเชียล จะเพิ่มทีละส่วนตาม BRIEF-index.md -->
+  <!-- ===================== คลังความรู้ (ส่วนที่ 6) ===================== -->
+  <section class="h25-kb" id="knowledge" aria-labelledby="h25-kb-title">
+    <h2 class="h25-kb__title" id="h25-kb-title">คลังความรู้</h2>
+    <div class="h25-kb__wrap">
+      <div class="h25-kb__col">
+        <h3 class="h25-kb__sub">บทความ</h3>
+        <div class="h25-ac__carousel h25-kb__carousel" role="group" aria-roledescription="carousel" aria-label="บทความสุขภาพใจ" data-ac-carousel>
+          <div class="h25-ac__viewport">
+            <div class="h25-ac__track">
+              <!-- TODO รูป: รูปปก 2–5 ตัดจากแบนเนอร์บทความ (ภาพวาด) ไว้ก่อน รอวาวาทำรูปแนวตั้งโทนเดียวกับรูป Perinatal -->
+              <article class="h25-ac__card" role="group" aria-roledescription="slide" aria-label="1 จาก 5">
+                <div class="h25-ac__media"><img src="assets/img/articles/perinatal-depression.webp" srcset="assets/img/articles/perinatal-depression-sm.webp 300w, assets/img/articles/perinatal-depression.webp 510w" sizes="(max-width:767px) 33vw, 255px" width="510" height="612" alt="คุณแม่หลังคลอดนั่งก้มหน้าเศร้าบนเตียง ข้างเปลลูกน้อย ประกอบบทความ Perinatal Depression ภัยเงียบของคุณแม่หลังคลอด" loading="lazy" decoding="async" draggable="false"></div>
+                <div class="h25-ac__body">
+                  <h4 class="h25-ac__name"><a class="h25-kb__link" href="https://www.manarom.com/blog/perinatal_depression.html" target="_blank" rel="noopener" title="Perinatal Depression ภัยเงียบของคุณแม่หลังคลอด">Perinatal Depression<br class="h25-kb__br"> ภัยเงียบของคุณแม่หลังคลอด<span class="sr-only"> (เปิดในแท็บใหม่)</span></a></h4>
+                  <span class="h25-ac__go" aria-hidden="true">อ่านเพิ่มเติม<svg viewBox="0 0 12 21" width="12" height="21" focusable="false"><path d="M1.5 1.5l9 9-9 9" fill="none" stroke="currentColor" stroke-width="3"/></svg></span>
+                </div>
+              </article>
+              <article class="h25-ac__card" role="group" aria-roledescription="slide" aria-label="2 จาก 5">
+                <div class="h25-ac__media"><img src="assets/img/articles/heal-depression.webp" srcset="assets/img/articles/heal-depression-sm.webp 300w, assets/img/articles/heal-depression.webp 510w" sizes="(max-width:767px) 33vw, 255px" width="510" height="612" alt="กระดาษโน้ตวาดหน้าเศร้าและร้องไห้บนพื้นสีน้ำเงิน ประกอบบทความการเยียวยาจิตใจตัวเองเมื่อเป็นโรคซึมเศร้า" loading="lazy" decoding="async" draggable="false"></div>
+                <div class="h25-ac__body">
+                  <h4 class="h25-ac__name"><a class="h25-kb__link" href="https://www.manarom.com/blog/Heal_yourself_when_suffering_from_depression.html" target="_blank" rel="noopener" title="การเยียวยาจิตใจตัวเองเมื่อเป็นโรคซึมเศร้า">การเยียวยาจิตใจตัวเองเมื่อเป็นโรคซึมเศร้า<span class="sr-only"> (เปิดในแท็บใหม่)</span></a></h4>
+                  <span class="h25-ac__go" aria-hidden="true">อ่านเพิ่มเติม<svg viewBox="0 0 12 21" width="12" height="21" focusable="false"><path d="M1.5 1.5l9 9-9 9" fill="none" stroke="currentColor" stroke-width="3"/></svg></span>
+                </div>
+              </article>
+              <article class="h25-ac__card" role="group" aria-roledescription="slide" aria-label="3 จาก 5">
+                <div class="h25-ac__media"><img src="assets/img/articles/burnout.webp" srcset="assets/img/articles/burnout-sm.webp 300w, assets/img/articles/burnout.webp 510w" sizes="(max-width:767px) 33vw, 255px" width="510" height="612" alt="ภาพวาดชายพนักงานนั่งกอดเข่าก้มหน้าใต้คำว่า Burnout ประกอบบทความ Burnout สภาวะหมดไฟจากการทำงาน" loading="lazy" decoding="async" draggable="false"></div>
+                <div class="h25-ac__body">
+                  <h4 class="h25-ac__name"><a class="h25-kb__link" href="https://www.manarom.com/blog/burnout.html" target="_blank" rel="noopener" title="Burnout สภาวะหมดไฟจากการทำงาน">Burnout สภาวะหมดไฟจากการทำงาน<span class="sr-only"> (เปิดในแท็บใหม่)</span></a></h4>
+                  <span class="h25-ac__go" aria-hidden="true">อ่านเพิ่มเติม<svg viewBox="0 0 12 21" width="12" height="21" focusable="false"><path d="M1.5 1.5l9 9-9 9" fill="none" stroke="currentColor" stroke-width="3"/></svg></span>
+                </div>
+              </article>
+              <article class="h25-ac__card" role="group" aria-roledescription="slide" aria-label="4 จาก 5">
+                <div class="h25-ac__media"><img src="assets/img/articles/panic-disorder.webp" srcset="assets/img/articles/panic-disorder-sm.webp 300w, assets/img/articles/panic-disorder.webp 510w" sizes="(max-width:767px) 33vw, 255px" width="510" height="612" alt="ภาพวาดชายเอามือกุมศีรษะด้วยความตื่นตระหนก ข้างคำว่าโรคแพนิก ประกอบบทความโรคแพนิก (Panic Disorder) ทุกข์ทรมานแค่ไหน" loading="lazy" decoding="async" draggable="false"></div>
+                <div class="h25-ac__body">
+                  <h4 class="h25-ac__name"><a class="h25-kb__link" href="https://www.manarom.com/blog/panic_disorder.html" target="_blank" rel="noopener" title="โรคแพนิก (Panic Disorder) ทุกข์ทรมานแค่ไหน">โรคแพนิก (Panic Disorder) ทุกข์ทรมานแค่ไหน<span class="sr-only"> (เปิดในแท็บใหม่)</span></a></h4>
+                  <span class="h25-ac__go" aria-hidden="true">อ่านเพิ่มเติม<svg viewBox="0 0 12 21" width="12" height="21" focusable="false"><path d="M1.5 1.5l9 9-9 9" fill="none" stroke="currentColor" stroke-width="3"/></svg></span>
+                </div>
+              </article>
+              <article class="h25-ac__card" role="group" aria-roledescription="slide" aria-label="5 จาก 5">
+                <div class="h25-ac__media"><img src="assets/img/articles/cbt-i-insomnia.webp" srcset="assets/img/articles/cbt-i-insomnia-sm.webp 300w, assets/img/articles/cbt-i-insomnia.webp 510w" sizes="(max-width:767px) 33vw, 255px" width="510" height="612" alt="ภาพวาดผู้ป่วยกุมศีรษะนั่งคุยกับนักบำบัด ประกอบบทความ CBT-I ปรับความคิด พฤติกรรม บำบัดรักษาโรคนอนไม่หลับ" loading="lazy" decoding="async" draggable="false"></div>
+                <div class="h25-ac__body">
+                  <h4 class="h25-ac__name"><a class="h25-kb__link" href="https://www.manarom.com/blog/CBT-I_Cognitive_Behavioral_Therapy_for_Insomnia.html" target="_blank" rel="noopener" title="CBT-I ปรับความคิด พฤติกรรม บำบัดรักษาโรคนอนไม่หลับ">CBT-I บำบัดรักษาโรคนอนไม่หลับ<span class="sr-only"> (เปิดในแท็บใหม่)</span></a></h4>
+                  <span class="h25-ac__go" aria-hidden="true">อ่านเพิ่มเติม<svg viewBox="0 0 12 21" width="12" height="21" focusable="false"><path d="M1.5 1.5l9 9-9 9" fill="none" stroke="currentColor" stroke-width="3"/></svg></span>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="h25-ac__dots">
+            <button class="h25-ac__dot" type="button" aria-current="true" aria-label="สไลด์ 1 จาก 5: Perinatal Depression"></button>
+            <button class="h25-ac__dot" type="button" aria-current="false" aria-label="สไลด์ 2 จาก 5: การเยียวยาจิตใจเมื่อเป็นโรคซึมเศร้า"></button>
+            <button class="h25-ac__dot" type="button" aria-current="false" aria-label="สไลด์ 3 จาก 5: Burnout"></button>
+            <button class="h25-ac__dot" type="button" aria-current="false" aria-label="สไลด์ 4 จาก 5: โรคแพนิก"></button>
+            <button class="h25-ac__dot" type="button" aria-current="false" aria-label="สไลด์ 5 จาก 5: CBT-I"></button>
+          </div>
+          <div class="h25-ac__bar" aria-hidden="true"><span class="h25-ac__thumb"></span></div>
+        </div>
+        <a class="h25-ac__all" href="https://www.manarom.com/blog/article_thai.html" target="_blank" rel="noopener">ดูทั้งหมด<span class="sr-only">บทความสุขภาพจิต (เปิดในแท็บใหม่)</span><svg viewBox="0 0 12 21" width="12" height="21" aria-hidden="true" focusable="false"><path d="M1.5 1.5l9 9-9 9" fill="none" stroke="currentColor" stroke-width="3"/></svg></a>
+      </div>
+
+      <div class="h25-kb__col">
+        <h3 class="h25-kb__sub">Manarom Channel</h3>
+        <!-- ภาพปกก่อน · กดแล้วค่อยโหลด iframe (youtube-nocookie) -->
+        <div class="h25-kb__video" data-yt="FADtQRRRccY">
+          <button class="h25-kb__play" type="button" aria-label="เล่นวิดีโอ: โรคแพนิก ตอน หลักการปฐมพยาบาลผู้มีภาวะแพนิก">
+            <img src="https://i.ytimg.com/vi/FADtQRRRccY/maxresdefault.jpg" data-fallback="https://i.ytimg.com/vi/FADtQRRRccY/hqdefault.jpg" width="1280" height="720" alt="ภาพปกคลิปวิดีโอ โรคแพนิก ตอน หลักการปฐมพยาบาลผู้มีภาวะแพนิก จาก Manarom Channel" loading="lazy" decoding="async">
+            <span class="h25-kb__btn" aria-hidden="true"><svg viewBox="0 0 12 21" width="31" height="51" focusable="false"><path d="M1.5 1.5l9 9-9 9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+        </div>
+        <a class="h25-ac__all h25-kb__all--video" href="https://www.youtube.com/user/ManaromCenter" target="_blank" rel="noopener">ดูทั้งหมด<span class="sr-only">วิดีโอ Manarom Channel บน YouTube (เปิดในแท็บใหม่)</span><svg viewBox="0 0 12 21" width="12" height="21" aria-hidden="true" focusable="false"><path d="M1.5 1.5l9 9-9 9" fill="none" stroke="currentColor" stroke-width="3"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== คำถามที่พบบ่อย + แผนที่ (ส่วนที่ 7) + โซเชียล (ส่วนที่ 8) — พื้นกรมก้อนเดียว ===================== -->
+  <div class="h25-end">
+    <div class="h25-fm">
+      <div class="h25-fm__wrap">
+        <section class="h25-fm__col h25-faq" id="faq" aria-labelledby="h25-faq-title">
+          <h2 class="h25-fm__title" id="h25-faq-title">คำถามที่พบบ่อย</h2>
+          <div class="h25-faq__box">
+            <ul class="h25-faq__list">
+              <li class="h25-faq__item">
+                <h3 class="h25-faq__q"><button type="button" id="h25-faq-q1" aria-expanded="false" aria-controls="h25-faq-a1">มาใช้บริการโรงพยาบาลมนารมย์<br>ครั้งแรก ต้องทำอย่างไรบ้าง<span class="h25-faq__ico" aria-hidden="true"></span></button></h3>
+                <div class="h25-faq__a" id="h25-faq-a1" role="region" aria-labelledby="h25-faq-q1">
+                  <div class="h25-faq__in"><p>กรุณานัดหมายล่วงหน้า ติดต่อแผนกเวชระเบียน โทร <a href="tel:027259592">02-725-9592</a> นำบัตรประชาชนมาด้วย และมาก่อนเวลานัดอย่างน้อย 15 นาที</p>
+                  <a class="h25-faq__more" href="register.html">ลงทะเบียนผู้ป่วยใหม่ ›</a></div>
+                </div>
+              </li>
+              <li class="h25-faq__item">
+                <h3 class="h25-faq__q"><button type="button" id="h25-faq-q2" aria-expanded="false" aria-controls="h25-faq-a2">มาใช้บริการโรงพยาบาลมนารมย์<br>โดยไม่ได้นัดหมาย (Walk in) ได้ไหม<span class="h25-faq__ico" aria-hidden="true"></span></button></h3>
+                <div class="h25-faq__a" id="h25-faq-a2" role="region" aria-labelledby="h25-faq-q2">
+                  <div class="h25-faq__in"><p>ได้ค่ะ แต่อาจได้รับบริการช้ากว่าผู้ที่นัดหมายล่วงหน้า</p>
+                  <a class="h25-faq__more" href="contact.html">ติดต่อเรา ›</a></div>
+                </div>
+              </li>
+              <li class="h25-faq__item">
+                <h3 class="h25-faq__q"><button type="button" id="h25-faq-q3" aria-expanded="false" aria-controls="h25-faq-a3">โรงพยาบาลมนารมย์<br>เปิดให้บริการเวลาใด<span class="h25-faq__ico" aria-hidden="true"></span></button></h3>
+                <div class="h25-faq__a" id="h25-faq-a3" role="region" aria-labelledby="h25-faq-q3">
+                  <div class="h25-faq__in"><p>แผนกผู้ป่วยนอก เปิด 07:00–20:00 น. แผนกฉุกเฉิน เปิด 24 ชั่วโมง</p>
+                  <a class="h25-faq__more" href="contact.html">ติดต่อเรา ›</a></div>
+                </div>
+              </li>
+              <li class="h25-faq__item">
+                <h3 class="h25-faq__q"><button type="button" id="h25-faq-q4" aria-expanded="false" aria-controls="h25-faq-a4">กังวลเรื่องค่าใช้จ่ายในการรักษา<br>และบริการ ต้องทำอย่างไร<span class="h25-faq__ico" aria-hidden="true"></span></button></h3>
+                <div class="h25-faq__a" id="h25-faq-a4" role="region" aria-labelledby="h25-faq-q4">
+                  <div class="h25-faq__in"><p>ค่าใช้จ่ายขึ้นอยู่กับประเภทการรักษา ดูอัตราค่าบริการผู้ป่วยนอกและผู้ป่วยในได้ที่หน้า<a href="pricing.html">อัตราค่าบริการ</a> หรือสอบถามค่าใช้จ่ายเบื้องต้นได้ที่ <a href="tel:027259595">02-725-9595</a></p>
+                  <a class="h25-faq__more" href="pricing.html">อัตราค่าบริการ ›</a></div>
+                </div>
+              </li>
+            </ul>
+            <a class="h25-ac__all h25-faq__all" href="faq.html">ดูทั้งหมด<span class="sr-only">คำถามที่พบบ่อย</span><svg viewBox="0 0 12 21" width="12" height="21" aria-hidden="true" focusable="false"><path d="M1.5 1.5l9 9-9 9" fill="none" stroke="currentColor" stroke-width="3"/></svg></a>
+          </div>
+        </section>
+
+        <section class="h25-fm__col h25-map" id="map" aria-labelledby="h25-map-title">
+          <h2 class="h25-fm__title" id="h25-map-title">แผนที่</h2>
+          <div class="h25-map__box">
+            <iframe class="h25-map__frame" src="https://maps.google.com/maps?q=Manarom+Hospital,+Sukhumvit+70/3,+Bang+Na&amp;hl=th&amp;z=16&amp;output=embed" title="แผนที่ Google Maps โรงพยาบาลมนารมย์ ซอยสุขุมวิท 70/3 บางนา" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+            <a class="h25-map__go" href="https://www.google.com/maps/dir/?api=1&amp;destination=Manarom+Hospital,+Sukhumvit+70/3,+Bang+Na" target="_blank" rel="noopener">นำทาง<span class="sr-only">ไปโรงพยาบาลมนารมย์ด้วย Google Maps (เปิดในแท็บใหม่)</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+          </div>
+          <address class="h25-addr">
+            <p class="h25-addr__name">โรงพยาบาลมนารมย์</p>
+            <p>9 ซอยสุขุมวิท 70/3 แขวงบางนาใต้ เขตบางนา กรุงเทพฯ 10260</p>
+            <p>Tel: <a class="h25-addr__tel" href="tel:027259595" data-copy="02 725 9595" data-toast=".h25-addr__toast" aria-label="โทร 02 725 9595">02 725 9595</a>, <a class="h25-addr__tel" href="tel:020329595" data-copy="02 032 9595" data-toast=".h25-addr__toast" aria-label="โทร 02 032 9595">02 032 9595</a></p>
+            <p>Email: <a href="mailto:contact@manarom.com">contact@manarom.com</a></p>
+            <span class="h25-addr__toast" role="status" aria-live="polite"></span>
+          </address>
+        </section>
+      </div>
+
+      <ul class="h25-social" aria-label="โซเชียลมีเดียโรงพยาบาลมนารมย์">
+        <li><a class="h25-social__a h25-social__a--fb" href="https://www.facebook.com/ManaromHospital" target="_blank" rel="noopener"><span class="h25-social__ico"><svg viewBox="0 0 67 67" aria-hidden="true" focusable="false"><path fill="currentColor" d="M43.9 31.1L43.3 35.5C43.2 36.3 42.6 36.9 41.9 36.9L34.6 36.9L34.6 55.6C33.8 55.7 33 55.7 32.3 55.7C30.5 55.7 28.8 55.5 27.1 55.2L27.1 36.9L21.5 36.9C21 36.9 20.6 36.4 20.6 35.9L20.6 30.3C20.6 29.8 21 29.4 21.5 29.4L27.1 29.4L27.1 21C27.1 15.8 31.3 11.6 36.5 11.6L43 11.6C43.5 11.6 43.9 12 43.9 12.5L43.9 18.1C43.9 18.7 43.5 19.1 43 19.1L38.3 19.1C36.3 19.1 34.6 20.8 34.6 22.8L34.6 29.4L42.4 29.4C43.3 29.4 44 30.2 43.9 31.1"/></svg></span><span class="h25-social__name">Manarom Center</span><span class="sr-only"> Facebook (เปิดในแท็บใหม่)</span></a></li>
+        <li><a class="h25-social__a h25-social__a--yt" href="https://www.youtube.com/user/ManaromCenter" target="_blank" rel="noopener"><span class="h25-social__ico"><svg viewBox="0 0 67 67" aria-hidden="true" focusable="false"><path fill="currentColor" d="M38.1 34.9L30 38.9C29.1 39.4 28 38.7 28 37.7L28 29.6C28 28.6 29.1 27.9 30 28.4L38.1 32.4C39.1 32.9 39.1 34.4 38.1 34.9M47.9 19.4L19 19.4C16.1 19.4 13.8 21.8 13.8 24.6L13.8 42.7C13.8 45.6 16.1 47.9 19 47.9L47.9 47.9C50.7 47.9 53 45.6 53 42.7L53 24.6C53 21.8 50.7 19.4 47.9 19.4"/></svg></span><span class="h25-social__name">Manarom Channel</span><span class="sr-only"> YouTube (เปิดในแท็บใหม่)</span></a></li>
+        <li><a class="h25-social__a h25-social__a--ig" href="https://www.instagram.com/manaromhospital" target="_blank" rel="noopener"><span class="h25-social__ico"><svg viewBox="0 0 67 67" aria-hidden="true" focusable="false"><path fill="currentColor" d="M48.3 42.2C48.3 45.5 45.6 48.2 42.2 48.2L25.3 48.2C21.9 48.2 19.2 45.5 19.2 42.2L19.2 25.2C19.2 21.8 21.9 19.1 25.3 19.1L42.2 19.1C45.6 19.1 48.3 21.8 48.3 25.2L48.3 42.2M42.9 16.1L24.7 16.1C20 16.1 16.2 19.9 16.2 24.6L16.2 42.8C16.2 47.4 20 51.3 24.7 51.3L42.9 51.3C47.5 51.3 51.3 47.4 51.3 42.8L51.3 24.6C51.3 19.9 47.5 16.1 42.9 16.1 M33.8 39.7C30.4 39.7 27.7 37 27.7 33.7C27.7 30.3 30.4 27.6 33.8 27.6C37.1 27.6 39.8 30.3 39.8 33.7C39.8 37 37.1 39.7 33.8 39.7M33.8 24.6C28.7 24.6 24.7 28.6 24.7 33.7C24.7 38.7 28.7 42.8 33.8 42.8C38.8 42.8 42.9 38.7 42.9 33.7C42.9 28.6 38.8 24.6 33.8 24.6 M43.5 25.8C42.5 25.8 41.7 25 41.7 24C41.7 22.9 42.5 22.1 43.5 22.1C44.5 22.1 45.3 22.9 45.3 24C45.3 25 44.5 25.8 43.5 25.8"/></svg></span><span class="h25-social__name">Manaromhospital</span><span class="sr-only"> Instagram (เปิดในแท็บใหม่)</span></a></li>
+        <li><a class="h25-social__a h25-social__a--tt" href="https://www.tiktok.com/@manaromhospital" target="_blank" rel="noopener"><span class="h25-social__ico"><svg viewBox="0 0 67 67" aria-hidden="true" focusable="false"><path fill="currentColor" d="M39.9 42.3L39.9 25.7C39.9 25.7 41.8 28.8 48.6 29C48.9 29 49.2 28.7 49.2 28.3L49.2 23.7C49.2 23.3 49 23 48.6 23C43.4 22.7 40.9 18.7 40.6 15C40.6 14.6 40.3 14.4 40 14.4L34.6 14.4C34.2 14.4 34 14.7 34 15L34 41.4C34 44.3 31.8 46.8 28.9 46.9C25.6 47.1 23 44.3 23.4 41C23.6 38.6 25.5 36.7 27.9 36.4C28.3 36.3 28.8 36.3 29.2 36.4C29.6 36.4 30 36.1 30 35.7L30 31C30 30.7 29.7 30.4 29.4 30.4C28.7 30.3 28 30.3 27.3 30.4C22.1 31 18 35.2 17.4 40.3C16.7 47.2 22 52.9 28.6 52.9C34.9 52.9 39.9 47.9 39.9 41.6"/></svg></span><span class="h25-social__name">Manaromhospital</span><span class="sr-only"> TikTok (เปิดในแท็บใหม่)</span></a></li>
+      </ul>
+    </div>
+  </div>
 </main>
 
-<!-- ===================== Footer (ส่วนที่ 9 รอทำถัดไป) ===================== -->
+<!-- ===================== Footer (ส่วนที่ 9) ===================== -->
+<footer class="h25-foot">
+  <div class="h25-foot__wrap">
+    <a class="h25-foot__logo" href="index.html" aria-label="หน้าหลัก โรงพยาบาลมนารมย์"><img src="assets/img/index/footer-logo.webp" width="166" height="140" alt="โลโก้โรงพยาบาลมนารมย์ Manarom Hospital" loading="lazy" decoding="async"></a>
+    <nav class="h25-foot__nav" aria-label="ลิงก์ท้ายเว็บ">
+      <ul>
+        <li><a href="about.html">เกี่ยวกับเรา</a></li>
+        <li><a href="doctors.html">ค้นหาแพทย์</a></li>
+        <li><a href="pricing.html">อัตราค่าบริการ</a></li>
+      </ul>
+      <ul>
+        <li><a href="services.html">การบริการ</a></li>
+        <li><a href="knowledge.html">คลังความรู้</a></li>
+        <li><a href="faq.html">คำถามที่พบบ่อย</a></li>
+      </ul>
+      <ul>
+        <li><a href="contact.html">ติดต่อเรา</a></li>
+        <li><a href="https://www.manarom.com/job_thai.html" target="_blank" rel="noopener">ร่วมงานกับเรา<span class="sr-only"> (เปิดในแท็บใหม่)</span></a></li>
+        <li><a href="https://manarom.com/images/Data_Protecti_on_Policy_ManaromHospital.pdf" target="_blank" rel="noopener">นโยบายคุ้มครองข้อมูลส่วนบุคคล<span class="sr-only"> (ไฟล์ PDF เปิดในแท็บใหม่)</span></a></li>
+      </ul>
+    </nav>
+  </div>
+  <p class="h25-foot__copy">© <span data-year>2026</span> โรงพยาบาลมนารมย์</p>
+</footer>
 
 <!-- ===================== แถบนัดหมายติดล่างจอ (มือถือ) ===================== -->
 <div class="h25-apptbar">
@@ -498,6 +676,6 @@
 try{ if(!sessionStorage.getItem("jd-closed")){ sessionStorage.setItem("jd-closed","1"); window.h25JdHold = true; } }catch(e){}
 </script>
 <script src="assets/js/app.js"></script>
-<script src="assets/js/index-2570.js"></script>
+<script src="assets/js/index-2570.js?v=20261025f"></script>
 </body>
 </html>

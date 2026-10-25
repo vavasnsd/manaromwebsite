@@ -2,6 +2,14 @@
 (function(){
   "use strict";
 
+  /* ข้อความที่ JS สร้างเอง · แยกตาม <html lang> (หน้า en/index.html ใช้ไฟล์เดียวกัน) */
+  var isEn = document.documentElement.lang === "en";
+  var T = isEn ? {
+    noResults: "No results for", copied: "Copied ✓", jdTip: "How can I help? 💙", closeMsg: "Close message", playVideo: /^Play video: /, video: "Video: "
+  } : {
+    noResults: "ไม่พบผลลัพธ์สำหรับ", copied: "คัดลอกแล้ว ✓", jdTip: "มีอะไรให้ช่วยไหมคะ 💙", closeMsg: "ปิดข้อความ", playVideo: /^เล่นวิดีโอ: /, video: "วิดีโอ: "
+  };
+
   /* ---------- Header: หดตอนเลื่อนลง ---------- */
   var header = document.querySelector(".h25-header");
   if(header){
@@ -50,12 +58,12 @@
   if(searchForm && window.MANAROM_SEARCH){
     var input = searchForm.querySelector("input");
     var resultsEl = searchForm.querySelector(".h25-search__results");
-    var data = window.MANAROM_SEARCH.th || [];
+    var data = window.MANAROM_SEARCH[isEn ? "en" : "th"] || [];
 
     function render(list, q){
       resultsEl.innerHTML = "";
       if(!list.length){
-        resultsEl.innerHTML = '<p class="h25-search__empty">ไม่พบผลลัพธ์สำหรับ "' + q + '"</p>';
+        resultsEl.innerHTML = '<p class="h25-search__empty">' + T.noResults + ' "' + q + '"</p>';
         resultsEl.hidden = false;
         return;
       }
@@ -202,8 +210,8 @@
     var tip = document.createElement("div");
     tip.className = "h25-jd-tip";
     tip.setAttribute("role", "status");
-    tip.innerHTML = '<button class="h25-jd-tip__text" type="button">มีอะไรให้ช่วยไหมคะ 💙</button>' +
-      '<button class="h25-jd-tip__x" type="button" aria-label="ปิดข้อความ"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
+    tip.innerHTML = '<button class="h25-jd-tip__text" type="button">' + T.jdTip + '</button>' +
+      '<button class="h25-jd-tip__x" type="button" aria-label="' + T.closeMsg + '"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
     fab.appendChild(tip);
     var hideTip = function(){
       tip.classList.remove("is-show");
@@ -432,13 +440,14 @@
       if(ok){ resolve(); } else { reject(); }
     });
   }
-  document.querySelectorAll(".h25-appt__tel[data-copy]").forEach(function(a){
+  document.querySelectorAll("a[data-copy]").forEach(function(a){
     a.addEventListener("click", function(e){
       if(!canHover.matches){ return; }
       e.preventDefault();
       copyText(a.getAttribute("data-copy")).then(function(){
+        var apptToast = a.hasAttribute("data-toast") ? document.querySelector(a.getAttribute("data-toast")) : document.querySelector(".h25-appt__toast");
         if(!apptToast){ return; }
-        apptToast.textContent = "คัดลอกแล้ว ✓";
+        apptToast.textContent = T.copied;
         apptToast.classList.add("is-show");
         clearTimeout(apptToast._t);
         apptToast._t = setTimeout(function(){ apptToast.classList.remove("is-show"); }, 1800);
@@ -560,6 +569,68 @@
     if(acMq.addEventListener){ acMq.addEventListener("change", onMq); }
     sync();
     start();
+  });
+
+  /* ---------- คำถามที่พบบ่อย: เปิดทีละข้อ · คำตอบเลื่อนลง 0.3s (CSS) ---------- */
+  document.querySelectorAll(".h25-faq__list").forEach(function(list){
+    var btns = Array.prototype.slice.call(list.querySelectorAll(".h25-faq__q button"));
+    function setOpen(btn, open){
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+      btn.closest(".h25-faq__item").classList.toggle("is-open", open);
+    }
+    btns.forEach(function(btn){
+      btn.addEventListener("click", function(){
+        var open = btn.getAttribute("aria-expanded") !== "true";
+        btns.forEach(function(b){ if(b !== btn){ setOpen(b, false); } });
+        setOpen(btn, open);
+      });
+    });
+    list.classList.add("is-ready");
+  });
+
+  /* แตะบนจอสัมผัส: ยุบ 0.97 (Safari :active ไม่แน่นอน) */
+  document.querySelectorAll(".h25-faq__q button, .h25-map__go, .h25-social__a").forEach(function(el){
+    function release(){ setTimeout(function(){ el.classList.remove("is-pressed"); }, 150); }
+    el.addEventListener("pointerdown", function(e){
+      if(e.pointerType !== "mouse"){ el.classList.add("is-pressed"); }
+    });
+    ["pointerup","pointercancel","pointerleave"].forEach(function(t){ el.addEventListener(t, release); });
+  });
+
+  /* ---------- คลังความรู้: วิดีโอ — โหลด iframe เมื่อกดเท่านั้น (หน้าเปิดเร็ว) ---------- */
+  document.querySelectorAll("[data-yt]").forEach(function(box){
+    var btn = box.querySelector(".h25-kb__play");
+    if(!btn){ return; }
+    /* ปก maxresdefault ไม่มีทุกคลิป — โหลดไม่ได้ หรือได้รูปเทา 120px → ใช้ hqdefault */
+    var img = btn.querySelector("img[data-fallback]");
+    if(img){
+      var fallback = function(){
+        var src = img.getAttribute("data-fallback");
+        if(!src || img.src === src){ return; }
+        img.removeAttribute("data-fallback");
+        img.width = 480; img.height = 360;
+        img.src = src;
+      };
+      var check = function(){ if(img.naturalWidth && img.naturalWidth <= 120){ fallback(); } };
+      img.addEventListener("error", fallback);
+      img.addEventListener("load", check);
+      if(img.complete){ if(img.naturalWidth){ check(); } else if(img.currentSrc){ fallback(); } }
+    }
+    function release(){ setTimeout(function(){ btn.classList.remove("is-pressed"); }, 150); }
+    btn.addEventListener("pointerdown", function(e){
+      if(e.pointerType !== "mouse"){ btn.classList.add("is-pressed"); }
+    });
+    ["pointerup","pointercancel","pointerleave"].forEach(function(t){ btn.addEventListener(t, release); });
+    btn.addEventListener("click", function(){
+      var f = document.createElement("iframe");
+      f.src = "https://www.youtube-nocookie.com/embed/" + box.getAttribute("data-yt") + "?autoplay=1&rel=0&playsinline=1";
+      f.title = btn.getAttribute("aria-label").replace(T.playVideo, T.video);
+      f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      f.referrerPolicy = "strict-origin-when-cross-origin";
+      f.allowFullscreen = true;
+      box.replaceChild(f, btn);
+      f.focus();
+    });
   });
 
 })();

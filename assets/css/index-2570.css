@@ -181,12 +181,13 @@ body{margin:0;} /* ลบขอบขาว 8px ที่เบราว์เ�
 }
 .h25-lang a{
   display:flex;align-items:center;justify-content:center;
-  width:36px;height:36px;border-radius:50%;color:#fff;
+  width:36px;height:36px;border-radius:50%;
   font:500 14px/1 "Noto Sans Thai",sans-serif;transition:transform var(--dur-s) var(--ease),filter var(--dur-s) var(--ease);
 }
 .h25-lang a:hover{transform:translateY(-1px);filter:brightness(1.05);}
-.h25-lang a[lang="th"]{background:#3AA9F5;}
-.h25-lang a[lang="en"]{background:#C2E1ED;}
+/* ภาษาที่เลือก: ตัวขาวบน #3AA9F5 · ภาษาที่ไม่ได้เลือก: ตัว #113C80 บน #C2E1ED (ขาวบน #C2E1ED อ่านไม่ออก) */
+.h25-lang a{background:#C2E1ED;color:var(--navy-700);}
+.h25-lang a[aria-current="true"]{background:#3AA9F5;color:#fff;}
 
 .h25-iconbtn{display:none;align-items:center;justify-content:center;width:42px;height:42px;border:none;border-radius:50%;background:var(--white);color:var(--navy-700);box-shadow:0 8px 18px -8px rgba(5,49,71,.45);transition:transform var(--dur-s) var(--ease),box-shadow var(--dur-s) var(--ease);}
 .h25-iconbtn svg{width:20px;height:20px;flex:none;display:block;} /* กำหนดขนาดชัด ๆ — Safari มือถือยุบ svg ไม่มีขนาดใน flex เหลือ 0 */
@@ -282,6 +283,8 @@ body{margin:0;} /* ลบขอบขาว 8px ที่เบราว์เ�
   transform:translateX(100%);transition:transform var(--dur-m) var(--ease);
 }
 .h25-drawer.is-open .h25-drawer__panel{transform:translateX(0);}
+.h25-drawer__head{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.h25-drawer__head .h25-lang{box-shadow:0 0 0 1px var(--sky-100),0 8px 18px -12px rgba(5,49,71,.4);} /* พื้นขาวบนแผงขาว → เส้นขอบบาง ๆ ให้เห็นแคปซูล */
 .h25-drawer__close{width:40px;height:40px;border:none;border-radius:50%;background:var(--sky-100);color:var(--navy-700);display:flex;align-items:center;justify-content:center;margin-left:auto;}
 .h25-drawer__close svg{width:20px;height:20px;}
 .h25-drawer nav{margin-top:20px;}
@@ -435,11 +438,19 @@ body{margin:0;} /* ลบขอบขาว 8px ที่เบราว์เ�
   .h25-hero__wrap{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto;grid-template-areas:"stage" "cards";row-gap:16px;padding:12px 16px 32px;}
   .h25-hero__slider{grid-area:stage;}
   .h25-hero__cards{grid-area:cards;}
-  /* ข้อความจัดกลาง ค่อนล่าง · เว้นที่ให้จุด ●○○ ด้านล่าง (ห่าง 14) · ไม่รับการแตะ → แตะ/ปัดทะลุถึงสไลด์ */
-  .h25-hero__intro{grid-area:stage;align-self:end;z-index:3;height:auto;padding:0 16px 46px;pointer-events:none;}
-  .h25-hero__title{margin:0;font-size:50px;line-height:1.25;font-weight:700;text-shadow:0 2px 14px rgba(5,49,71,.55),0 1px 3px rgba(5,49,71,.35);}
-  .h25-hero__sub{margin-top:2px;color:var(--white);font-size:22px;line-height:1.4;}
-  .h25-hero__sub b{font-weight:700;color:#7DD3F7;} /* ฟ้าองค์กร #5BC8F5 อ่อนลงนิด → contrast ≥ 4.7:1 ทุกรูป (วัดจริง) */
+  /* "พลังใจดี เริ่มที่...มนารมย์" บรรทัดเดียว ในแคปซูลกระจกฝ้า · จัดกลาง เหนือจุด ●○○ 12px · ไม่รับการแตะ → แตะ/ปัดทะลุถึงสไลด์
+     รูปสว่างตามจริง ไม่มีแถบไล่สี/เงาสีกรมหลังข้อความ */
+  .h25-hero__intro{grid-area:stage;align-self:end;z-index:3;height:auto;padding:0 8px 44px;pointer-events:none;}
+  .h25-hero__title{
+    width:fit-content;max-width:100%;margin:0 auto;padding:8px 18px;border-radius:999px;
+    background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+    white-space:nowrap;color:var(--navy-700);font-size:20px;line-height:1.4;font-weight:500;text-shadow:none;
+  }
+  @supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+    .h25-hero__title{background:rgba(255,255,255,.88);} /* ไม่มีฝ้า → พื้นทึบขึ้นแทน */
+  }
+  .h25-hero__sub{display:inline;margin:0;color:inherit;font:inherit;}
+  .h25-hero__sub b{font-weight:700;color:#3AA9F5;}
 
   /* การ์ดแบบตัวอย่างโทรศัพท์: ชื่อซ้ายบน · ไอคอนซ้ายล่าง · ปุ่มวงกลม ↗ ขวาล่าง */
   .h25-hero__cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;--card-hover-scale:1.03;}
@@ -464,8 +475,8 @@ body{margin:0;} /* ลบขอบขาว 8px ที่เบราว์เ�
   .h25-hero__track{position:absolute;inset:0;display:block;}
   .h25-hero__slide{position:absolute;inset:0;}
   .h25-hero__media{position:absolute;inset:0;aspect-ratio:auto;border-radius:0;box-shadow:none;}
-  /* แถบไล่สีกรมจากล่าง + เงากรมนุ่ม ๆ เฉพาะหลังข้อความ (แถบอย่างเดียวได้ contrast แค่ ~2.9:1) */
-  .h25-hero__media::after{background:radial-gradient(90% 50% at 50% 66%,rgba(5,49,71,.65) 0%,rgba(5,49,71,0) 100%),linear-gradient(to top,rgba(5,49,71,.88) 0%,rgba(17,60,128,.55) 38%,rgba(17,60,128,0) 72%);}
+  /* รูปสว่างตามจริง: ไม่มีแถบไล่สี/เงาวงรีทั้งรูป (ปิดไล่สีขาวของคอมด้วย) */
+  .h25-hero__media::after{background:none;}
   .h25-hero__text{top:auto;right:auto;left:18px;bottom:30px;max-width:calc(100% - 36px);align-items:flex-start;text-align:left;
     text-shadow:0 0 10px rgba(255,255,255,.95),0 0 3px rgba(255,255,255,.9);}
   .h25-hero__name{font-size:30px;line-height:1.3;}
@@ -518,15 +529,16 @@ body{margin:0;} /* ลบขอบขาว 8px ที่เบราว์เ�
 .h25-age__name{display:flex;align-items:center;margin-top:-9px;font:600 35px/51px "Noto Sans Thai",sans-serif;white-space:nowrap;}
 .h25-age__arrow{flex:none;margin-left:8px;opacity:0;transform:translateX(-10px);transition:opacity .3s var(--ease),transform .3s var(--ease);}
 
-/* กล่องขาว 2 กล่อง: 836 / 413 · สูง 248 · มุมโค้ง 28 */
-.h25-svc__groups{display:grid;grid-template-columns:836px 413px;gap:19px;margin-top:63px;}
+/* กล่องขาว 2 กล่อง: 836 / 413 · สูง 248 · มุมโค้ง 28
+   ใช้สัดส่วน fr (ที่ 1440 = 836/413 พอดี) → จอ 1200–1359 บีบตามจอ ไม่ล้นขอบขวา (เดิม px ตายตัวรวม 1268) */
+.h25-svc__groups{display:grid;grid-template-columns:minmax(0,836fr) minmax(0,413fr);gap:19px;margin-top:63px;}
 .h25-svc__group .h25-svc__sub{margin-bottom:19px;}
 .h25-svc .h25-svc__panel{
-  display:grid;grid-template-columns:repeat(2,336px);align-content:start;gap:10.7px 15px;
+  display:grid;grid-template-columns:repeat(2,minmax(0,336px));align-content:start;gap:10.7px 15px;
   min-height:248px;padding:35px 34px 30px 42px;border-radius:28px;background:var(--white);
   box-shadow:0 14px 34px -22px rgba(17,60,128,.28);
 }
-.h25-svc .h25-svc__group--special .h25-svc__panel{grid-template-columns:336px;padding-left:34px;}
+.h25-svc .h25-svc__group--special .h25-svc__panel{grid-template-columns:minmax(0,336px);padding-left:34px;}
 
 /* ปุ่ม 336×50 มุม 14 · ขอบ 0.5 #6D6E71 · ชี้แล้วสี #BFEBFB เลื่อนเติมจากซ้าย */
 .h25-pill{
@@ -641,6 +653,18 @@ body{margin:0;} /* ลบขอบขาว 8px ที่เบราว์เ�
   .h25-appt__row::before{margin-right:16px;}
   .h25-appt__row::after{margin-left:16px;}
   .h25-appt__tel{width:250px;height:80px;font-size:26px;}
+}
+/* ปุ่มบริการ: จอ 1200–1359 ปุ่มแคบลง (กล่องบีบตามจอ) → ตัวอักษร 25→23px ให้เหลือที่ว่างข้างละ ≥12 ("Psychological Testing") */
+@media (min-width:1200px) and (max-width:1359px){
+  .h25-pill{padding:0 12px;font-size:23px;}
+}
+/* ปุ่มบริการ แท็บเล็ต 768–1199: ชื่อยาว ("การทดสอบทางจิตวิทยา", "Occupational Therapy") ขึ้น 2 บรรทัดในปุ่ม ไม่ล้นกรอบ
+   (ไม่ใช้ในมือถือ — มือถือมีขนาดปุ่มของตัวเอง) */
+@media (min-width:768px) and (max-width:1199px){
+  .h25-pill{height:auto;min-height:50px;padding:4px 12px;line-height:1.25;text-align:center;}
+  /* ปุ่มในแถวเดียวกันสูงเท่ากัน: li ยืดเต็มแถว grid → ปุ่มยืดเต็ม li */
+  .h25-svc .h25-svc__panel > li{display:flex;}
+  .h25-svc .h25-svc__panel > li > .h25-pill{flex:1 1 auto;}
 }
 
 /* มือถือ */
@@ -870,6 +894,282 @@ body{margin:0;} /* ลบขอบขาว 8px ที่เบราว์เ�
 }
 
 /* ===================================================================
+   คลังความรู้ (ส่วนที่ 6) — วัดจาก เว็บ 2570.pdf
+   พื้น #8DD7F7 มุมบน 113 · หัวข้อ 50 + เส้นขาว 218×2 · คอลัมน์ 585 ×2 ห่าง 94 (เท่าส่วนที่ 5)
+   การ์ดบทความใช้คลาส .h25-ac__* ของส่วนที่ 5 · กล่องวิดีโอขาว 585×306 มุม 28 · ปุ่ม ⌀114
+   ปุ่ม "ดูทั้งหมด" 2 ฝั่งอยู่แนวเดียวกัน · ใต้ปุ่ม 69 ถึงส่วนถัดไป
+   =================================================================== */
+.h25-kb{background:var(--sky-200);border-radius:113px 113px 0 0;padding:35px 0 69px;}
+.h25-kb__title{margin:0;text-align:center;color:var(--navy-900);font:600 50px/73px "Noto Sans Thai",sans-serif;}
+.h25-kb__title::after{content:"";display:block;width:218px;height:2px;margin:7px auto 0;background:var(--white);}
+.h25-kb__wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:94px;max-width:1440px;margin:0 auto;padding:0 86px 0 90px;}
+.h25-kb__col{display:flex;flex-direction:column;min-width:0;}
+.h25-kb__sub{margin:33px 0 0;color:var(--navy-900);font:500 30px/43px "Noto Sans Thai",sans-serif;}
+.h25-kb .h25-ac__carousel{margin-top:11px;}
+
+/* ชื่อบทความ = ลิงก์ข้อความจริง · ::after คลุมทั้งการ์ด (กดได้ทั้งใบ) · "อ่านเพิ่มเติม" เป็นแค่ป้าย */
+.h25-kb__link::after{content:"";position:absolute;inset:0;z-index:1;border-radius:28px;}
+.h25-kb__link:focus-visible{outline:none;}
+.h25-kb .h25-ac__go::after{content:none;}
+.h25-kb .h25-ac__card:has(.h25-kb__link:focus-visible){transform:scale(1.03);outline:2px solid var(--navy-700);outline-offset:2px;}
+.h25-kb .h25-ac__card:has(.h25-kb__link:focus-visible) .h25-ac__go svg{transform:translateX(5px);}
+.h25-kb .h25-ac__all:focus-visible{outline-color:var(--white);}
+
+/* วิดีโอ: ภาพปก + ปุ่มวงกลม → กดแล้ว JS ใส่ iframe แทน */
+.h25-kb__video{position:relative;height:306px;margin-top:11px;border-radius:28px;background:var(--white);overflow:hidden;isolation:isolate;}
+.h25-kb__play{position:absolute;inset:0;display:block;width:100%;height:100%;padding:0;border:0;background:none;}
+.h25-kb__play img{width:100%;height:100%;object-fit:cover;}
+.h25-kb__btn{
+  position:absolute;left:50%;top:50%;display:grid;place-items:center;width:114px;height:114px;margin:-57px 0 0 -57px;padding-left:6px;
+  border-radius:50%;background:var(--sky-100);color:#3AA9F5;box-shadow:0 10px 24px -12px rgba(5,49,71,.45);
+  transition:transform .3s var(--ease),background-color .3s var(--ease),color .3s var(--ease);
+}
+.h25-kb__play:focus-visible{outline:none;}
+.h25-kb__play:focus-visible .h25-kb__btn{transform:scale(1.08);background:#3AA9F5;color:var(--white);outline:2px solid var(--navy-700);outline-offset:3px;}
+.h25-kb__video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+.h25-kb__all--video{margin-top:58px;} /* = จุด 19 + 17 + 22 ฝั่งบทความ → ปุ่มแนวเดียวกัน */
+@media (hover:hover){
+  .h25-kb__play:hover .h25-kb__btn{transform:scale(1.08);background:#3AA9F5;color:var(--white);}
+  .h25-kb__play:active .h25-kb__btn{transform:scale(1);transition-duration:.15s;}
+}
+@media (hover:hover) and (min-width:768px){
+  .h25-kb .h25-ac__track:not(.is-dragging) .h25-ac__card:has(.h25-kb__link:active){transform:scale(.98);transition-duration:.15s;}
+}
+@media (hover:none){
+  .h25-kb .h25-ac__card:has(.h25-kb__link:active){transform:scale(.97);}
+  .h25-kb__btn{transition-duration:.15s;}
+  .h25-kb__play:active .h25-kb__btn,.h25-kb__play.is-pressed .h25-kb__btn{transform:scale(.97);background:#3AA9F5;color:var(--white);}
+}
+@media (prefers-reduced-motion:reduce){
+  .h25-kb__btn{transform:none !important;transition:none;}
+}
+
+/* Tablet: ใช้ค่าเดียวกับส่วนที่ 5 */
+@media (max-width:1199px){
+  .h25-kb{border-radius:80px 80px 0 0;padding:32px 0 56px;}
+  .h25-kb__title{font-size:40px;line-height:58px;}
+  .h25-kb__wrap{gap:48px;padding:0 32px;}
+  .h25-kb__sub{margin-top:24px;font-size:24px;line-height:36px;}
+  .h25-kb__video{height:260px;}
+  .h25-kb__btn{width:96px;height:96px;margin:-48px 0 0 -48px;}
+  .h25-kb__btn svg{width:26px;height:43px;}
+  .h25-kb__all--video{margin-top:58px;}
+}
+@media (max-width:1023px){
+  .h25-kb__wrap{grid-template-columns:minmax(0,1fr);gap:16px;}
+  .h25-kb__col{width:100%;max-width:585px;margin:0 auto;}
+  .h25-kb__video{height:auto;aspect-ratio:16/9;}
+  .h25-kb__all--video{margin-top:22px;}
+}
+
+/* มือถือ: บทความ (การ์ดโผล่ขอบ 82%) → ปุ่ม → วิดีโอ 16:9 เต็มกว้าง → ปุ่ม */
+@media (max-width:767px){
+  .h25-kb{border-radius:40px 40px 0 0;padding:28px 0 40px;}
+  .h25-kb__title{font-size:30px;line-height:44px;}
+  .h25-kb__title::after{width:140px;margin-top:6px;}
+  .h25-kb__wrap{gap:12px;padding:0 16px;}
+  .h25-kb__col{max-width:none;}
+  .h25-kb__sub{margin-top:20px;font-size:20px;line-height:30px;}
+  .h25-kb .h25-ac__carousel{margin-top:6px;}
+  .h25-kb__link::after{border-radius:24px;}
+  .h25-kb__br{display:none;}
+  .h25-kb__video{margin-top:10px;border-radius:24px;}
+  .h25-kb__btn{width:68px;height:68px;margin:-34px 0 0 -34px;padding-left:4px;}
+  .h25-kb__btn svg{width:18px;height:30px;}
+  .h25-kb__all--video{margin-top:16px;}
+}
+
+/* ===================================================================
+   คำถามที่พบบ่อย + แผนที่ (ส่วนที่ 7) + โซเชียล (ส่วนที่ 8) + Footer (ส่วนที่ 9) — วัดจาก เว็บ 2570.pdf
+   พื้นกรม #053147 มุมบน 113 · มุมล่างขวา 259 · คอลัมน์ 588 ×2 (x90 / x768) ห่าง 90
+   กล่องขาวมุม 43: FAQ 588×567 · แผนที่ 588×402 · Footer #E8F7FD มุมบนซ้าย 113 (ข้างหลังเป็นกรม)
+   =================================================================== */
+/* หลังมุมโค้งบนของพื้นกรม = ฟ้าส่วนที่ 6 · หลังมุมโค้งล่างขวา = สีพื้น Footer */
+.h25-end{background:linear-gradient(to bottom,var(--sky-200) 0 50%,var(--sky-100) 50% 100%);}
+.h25-fm{background:var(--navy-900);border-radius:113px 113px 259px 0;padding:40px 0 41px;}
+.h25-fm__wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:90px;max-width:1440px;margin:0 auto;padding:0 84px 0 90px;}
+.h25-fm__col{display:flex;flex-direction:column;min-width:0;}
+.h25-fm__title{margin:0;text-align:center;color:#9DD4FA;font:600 50px/73px "Noto Sans Thai",sans-serif;}
+.h25-fm__title::after{content:"";display:block;width:207px;height:2px;margin:9px auto 0;background:var(--white);}
+
+/* FAQ: ข้อละ 105 (ข้อความ 2 บรรทัด × 35 + บนล่าง 17) · ข้อความห่างขอบซ้าย 51 · ⊕ ⌀33 ชิดขวา 56 */
+.h25-faq__box{min-height:567px;margin-top:59px;padding:40px 56px 21px 51px;border-radius:43px;background:var(--white);display:flex;flex-direction:column;}
+.h25-faq .h25-faq__list{margin:0;padding:0;}
+.h25-faq__item+.h25-faq__item{border-top:1px solid #9DD4FA;}
+.h25-faq__q{margin:0;}
+.h25-faq__q button{
+  position:relative;display:block;width:calc(100% + 24px);margin:0 -12px;padding:17px 60px 17px 12px;border:0;border-radius:14px;background:none;
+  text-align:left;color:var(--navy-900);font:400 25px/35px "Noto Sans Thai",sans-serif;transition:background-color .3s var(--ease);
+}
+.h25-faq__ico{position:absolute;right:12px;top:50%;width:33px;height:33px;margin-top:-16.5px;border:1px solid #3AA9F5;border-radius:50%;transition:transform .3s var(--ease),background-color .3s var(--ease);}
+.h25-faq__ico::before,.h25-faq__ico::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:1px;margin:-.5px 0 0 -7px;background:#3AA9F5;transition:transform .3s var(--ease),background-color .3s var(--ease);}
+.h25-faq__ico::after{transform:rotate(90deg);}
+.h25-faq__q button[aria-expanded="true"] .h25-faq__ico::after{transform:rotate(180deg);} /* ⊕ → ⊖: เส้นตั้งหมุนลงมาทับเส้นนอน */
+/* คำตอบเลื่อนลงนุ่ม ๆ (grid 0fr → 1fr) · ซ่อนเฉพาะตอน JS พร้อม (ไม่มี JS = เห็นคำตอบทุกข้อ) */
+.h25-faq__a{display:grid;grid-template-rows:1fr;}
+.h25-faq__in{min-height:0;overflow:hidden;}
+.h25-faq__list.is-ready .h25-faq__a{grid-template-rows:0fr;visibility:hidden;transition:grid-template-rows .3s var(--ease),visibility 0s linear .3s;}
+.h25-faq__list.is-ready .h25-faq__item.is-open .h25-faq__a{grid-template-rows:1fr;visibility:visible;transition:grid-template-rows .3s var(--ease),visibility 0s;}
+.h25-faq__in p{margin:0;padding:0 48px 0 0;color:#404041;font:400 18px/1.6 "Noto Sans Thai",sans-serif;}
+.p2570 .h25-faq__in p a{color:#0A6FB5;text-decoration:underline;text-underline-offset:3px;}
+.h25-faq__more{display:inline-block;margin:6px 0 18px;font:500 18px/1.5 "Noto Sans Thai",sans-serif;transition:transform .3s var(--ease);}
+.p2570 .h25-faq__more{color:#0A6FB5;}
+.h25-faq__all{margin-top:35px;}
+
+/* แผนที่ + ที่อยู่ */
+.h25-map__box{position:relative;height:402px;margin-top:59px;border-radius:43px;background:var(--white);overflow:hidden;isolation:isolate;}
+.h25-map__frame{display:block;width:100%;height:100%;border:0;}
+.h25-map__go{
+  position:absolute;right:16px;bottom:16px;z-index:1;display:flex;align-items:center;gap:6px;height:38px;padding:0 16px 0 18px;border-radius:999px;
+  background:var(--navy-900);font:500 16px/1 "Noto Sans Thai",sans-serif;box-shadow:0 10px 20px -10px rgba(5,49,71,.7);
+  transition:transform .3s var(--ease),background-color .3s var(--ease);
+}
+.p2570 .h25-map__go{color:var(--white);}
+.h25-map__go svg{color:#8DD7F7;transition:transform .3s var(--ease);}
+.h25-addr{position:relative;margin-top:35px;font-style:normal;color:var(--white);font:400 20px/30px "Noto Sans Thai",sans-serif;}
+.h25-addr p{margin:0;}
+.h25-addr .h25-addr__name{color:#8DD7F7;font:500 30px/41px "Noto Sans Thai",sans-serif;}
+.p2570 .h25-addr a{color:var(--white);text-decoration:underline;text-decoration-color:transparent;text-underline-offset:4px;transition:text-decoration-color .3s var(--ease),color .3s var(--ease);}
+.h25-addr__toast{
+  position:absolute;left:0;top:-38px;padding:6px 14px;border-radius:999px;background:var(--white);color:var(--navy-900);
+  font:500 15px/1.3 "Noto Sans Thai",sans-serif;opacity:0;transform:translateY(6px);pointer-events:none;transition:opacity .3s var(--ease),transform .3s var(--ease);
+}
+.h25-addr__toast.is-show{opacity:1;transform:none;}
+
+/* โซเชียล: วงกลม ⌀67 #C7EAFB ไอคอนกรม · ชื่อใต้ไอคอน 14 */
+/* คอม: ตำแหน่งชื่อตาม PDF (x269 / 512 / 737 / 944 → ช่องไฟ 81 / 48 / 37) · วงกลมอยู่กลางชื่อ */
+.p2570 .h25-social{display:flex;justify-content:flex-start;gap:0;max-width:1440px;margin:61px auto 0;padding:0 0 0 269px;}
+.p2570 .h25-social li:nth-child(2){margin-left:81px;}
+.p2570 .h25-social li:nth-child(3){margin-left:48px;}
+.p2570 .h25-social li:nth-child(4){margin-left:37px;}
+.h25-social__a{display:flex;flex-direction:column;align-items:center;gap:14px;}
+.h25-social__ico{display:grid;place-items:center;width:67px;height:67px;border-radius:50%;background:#C7EAFB;color:var(--navy-900);
+  transition:transform .3s var(--ease),background-color .3s var(--ease),color .3s var(--ease),box-shadow .3s var(--ease);}
+.h25-social__ico svg{display:block;width:67px;height:67px;}
+.h25-social__name{color:#C7EAFB;font:500 20px/29px "Noto Sans Thai",sans-serif;white-space:nowrap;}
+.h25-social__a--fb{--brand:#1877F2;}
+.h25-social__a--yt{--brand:#FF0000;}
+.h25-social__a--ig{--brand:radial-gradient(circle at 30% 107%,#FDF497 0%,#FDF497 5%,#FD5949 45%,#D6249F 60%,#285AEB 90%);}
+.h25-social__a--tt{--brand:#000;}
+
+/* Footer */
+.h25-foot{position:relative;background:var(--sky-100);border-radius:113px 0 0 0;}
+.h25-foot::before{content:"";position:absolute;left:0;top:0;z-index:-1;width:113px;height:113px;background:var(--navy-900);} /* หลังมุมโค้ง = พื้นกรม */
+.h25-foot__wrap{display:flex;align-items:flex-start;max-width:1440px;margin:0 auto;padding:48px 0 0 146px;}
+.h25-foot__logo{flex:none;display:block;width:166px;}
+.h25-foot__logo img{width:166px;height:auto;}
+.h25-foot__nav{position:relative;display:grid;grid-template-columns:238px 234px auto;margin:32px 0 0 194px;}
+.h25-foot__nav::before{content:"";position:absolute;left:-100px;top:-3px;width:1px;height:98px;background:#3AA9F5;} /* เส้นคั่นแนวตั้ง x406 */
+.p2570 .h25-foot__nav ul{margin:0;padding:0;}
+.h25-foot__nav a{
+  display:inline-block;color:#58595B;font:400 25px/35px "Noto Sans Thai",sans-serif;
+  background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:color .3s var(--ease),background-size .3s var(--ease);
+}
+.p2570 .h25-foot__nav a{color:#58595B;}
+.h25-foot__copy{max-width:1440px;margin:0 auto;padding:30px 24px 22px;text-align:center;color:#6D7A8A;font:400 14px/1.4 "Noto Sans Thai",sans-serif;}
+
+/* ชี้ (มีเมาส์) + โฟกัสคีย์บอร์ด */
+.h25-faq__q button:focus-visible{outline:2px solid var(--navy-700);outline-offset:2px;background:#E8F7FD;}
+.h25-map__go:focus-visible{outline:2px solid var(--white);outline-offset:3px;transform:scale(1.04);}
+.h25-map__go:focus-visible svg{transform:translate(2px,-2px);}
+.h25-faq__more:focus-visible,.h25-addr a:focus-visible,.h25-faq__in p a:focus-visible{outline:2px solid var(--navy-700);outline-offset:2px;border-radius:4px;}
+.h25-addr a:focus-visible{outline-color:var(--white);}
+.h25-social__a:focus-visible{outline:none;}
+.h25-social__a:focus-visible .h25-social__ico{transform:translateY(-4px);background:var(--brand);color:var(--white);outline:2px solid var(--white);outline-offset:3px;}
+.p2570 .h25-foot__nav a:focus-visible{outline:2px solid var(--navy-700);outline-offset:3px;border-radius:4px;color:#3AA9F5;background-size:100% 1px;}
+@media (hover:hover){
+  .h25-faq__q button:hover{background:#E8F7FD;}
+  .h25-faq__q button:hover .h25-faq__ico{background:var(--white);}
+  .h25-faq__more:hover{transform:translateX(4px);}
+  .h25-map__go:hover{transform:scale(1.04);background:#03202F;}
+  .h25-map__go:hover svg{transform:translate(2px,-2px);}
+  .h25-map__go:active{transform:scale(.98);transition-duration:.15s;}
+  .p2570 .h25-addr a:hover{text-decoration-color:currentColor;color:#C7EAFB;}
+  .h25-social__a:hover .h25-social__ico{transform:translateY(-4px);background:var(--brand);color:var(--white);box-shadow:0 12px 20px -10px rgba(0,0,0,.5);}
+  .p2570 .h25-foot__nav a:hover{color:#3AA9F5;background-size:100% 1px;}
+}
+@media (hover:none){
+  .h25-faq__q button,.h25-map__go,.h25-social__ico{transition-duration:.15s;}
+  .h25-faq__q button:active,.h25-faq__q button.is-pressed{background:#E8F7FD;transform:scale(.97);}
+  .h25-map__go:active,.h25-map__go.is-pressed{transform:scale(.97);}
+  .h25-social__a:active .h25-social__ico,.h25-social__a.is-pressed .h25-social__ico{transform:scale(.97);background:var(--brand);color:var(--white);}
+}
+@media (prefers-reduced-motion:reduce){
+  .h25-faq__ico,.h25-faq__more,.h25-map__go,.h25-map__go svg,.h25-social__ico,.h25-faq__q button{transform:none !important;}
+  .h25-faq__ico::after{transition:none;}
+  .h25-faq__list.is-ready .h25-faq__a,.h25-faq__list.is-ready .h25-faq__item.is-open .h25-faq__a,.h25-faq__ico,.h25-foot__nav a{transition:none;}
+}
+
+/* Tablet */
+@media (max-width:1199px){
+  .h25-fm{border-radius:80px 80px 160px 0;padding:32px 0 40px;}
+  .h25-fm__wrap{gap:40px;padding:0 32px;}
+  .h25-fm__title{font-size:40px;line-height:58px;}
+  .h25-faq__box,.h25-map__box{margin-top:40px;border-radius:36px;}
+  .h25-faq__box{min-height:0;padding:28px 36px 21px 36px;}
+  .h25-faq__q button{font-size:20px;line-height:29px;padding-right:52px;}
+  .h25-faq__in p,.h25-faq__more{font-size:16px;}
+  .h25-faq__all{margin-top:28px;}
+  .h25-map__box{height:340px;}
+  .h25-addr{font-size:17px;line-height:27px;}
+  .h25-addr .h25-addr__name{font-size:24px;line-height:36px;}
+  .p2570 .h25-social{justify-content:center;gap:0 36px;padding:0;}
+  .p2570 .h25-social li:nth-child(n){margin-left:0;}
+  .h25-social__name{font-size:17px;}
+  .h25-foot{border-radius:80px 0 0 0;}
+  .h25-foot::before{width:80px;height:80px;}
+  .h25-foot__wrap{padding:40px 32px 0 72px;}
+  .h25-foot__logo,.h25-foot__logo img{width:136px;}
+  .h25-foot__nav{grid-template-columns:repeat(3,auto);column-gap:48px;margin:24px 0 0 120px;}
+  .h25-foot__nav::before{left:-60px;}
+  .h25-foot__nav a{font-size:19px;line-height:32px;}
+}
+@media (max-width:1023px){
+  .h25-fm__wrap{grid-template-columns:minmax(0,1fr);gap:48px;}
+  .h25-fm__col{width:100%;max-width:588px;margin:0 auto;}
+  .h25-map__box{height:auto;aspect-ratio:16/10;}
+  .h25-foot__wrap{padding-left:48px;}
+  .h25-foot__nav{column-gap:32px;margin-left:80px;}
+  .h25-foot__nav::before{left:-40px;}
+}
+
+/* มือถือ: FAQ → แผนที่ 16:10 → ที่อยู่ → โซเชียล 4 อันแถวเดียว → Footer (โลโก้บน ลิงก์ 2 คอลัมน์) */
+@media (max-width:767px){
+  .h25-fm{border-radius:40px 40px 72px 0;padding:28px 0 32px;}
+  .h25-fm__wrap{gap:32px;padding:0 16px;}
+  .h25-fm__col{max-width:none;}
+  .h25-fm__title{font-size:30px;line-height:44px;}
+  .h25-fm__title::after{width:140px;margin-top:6px;}
+  .h25-faq__box,.h25-map__box{margin-top:18px;border-radius:24px;}
+  .h25-faq__box{padding:8px 18px 18px;}
+  .h25-faq__q button{width:calc(100% + 16px);margin:0 -8px;padding:14px 48px 14px 8px;font-size:17px;line-height:26px;border-radius:12px;}
+  .h25-faq__ico{right:8px;width:30px;height:30px;margin-top:-15px;}
+  .h25-faq__ico::before,.h25-faq__ico::after{width:12px;margin-left:-6px;}
+  .h25-faq__in p{padding-right:8px;font-size:15px;}
+  .h25-faq__more{margin:4px 0 14px;font-size:15px;}
+  .h25-faq__all{margin-top:14px;}
+  .h25-map__go{right:10px;bottom:10px;height:34px;padding:0 12px 0 14px;font-size:14px;}
+  .h25-addr{margin-top:18px;font-size:15px;line-height:24px;}
+  .h25-addr .h25-addr__name{font-size:21px;line-height:32px;}
+  .p2570 .h25-social{justify-content:space-between;gap:0;margin-top:32px;padding:0;}
+  .p2570 .h25-social li{flex:1 1 0;min-width:0;}
+  .h25-social__a{gap:8px;}
+  .h25-social__ico,.h25-social__ico svg{width:52px;height:52px;}
+  .h25-social__name{font-size:clamp(9.5px,2.7vw,12px);line-height:16px;} /* ชื่อยาวสุด "Manaromhospital" ต้องพอดี 1/4 จอที่ 360 */
+  .h25-foot{border-radius:40px 0 0 0;}
+  .h25-foot::before{width:40px;height:40px;}
+  .h25-foot__wrap{flex-direction:column;align-items:center;padding:28px 24px 0;}
+  .h25-foot__logo,.h25-foot__logo img{width:110px;}
+  .h25-foot__nav{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:20px;width:100%;max-width:340px;margin:22px 0 0;}
+  .h25-foot__nav::before{display:none;}
+  .p2570 .h25-foot__nav ul{display:contents;}
+  .h25-foot__nav li{min-width:0;}
+  .h25-foot__nav ul:last-child li:last-child{grid-column:1 / -1;} /* นโยบายฯ ยาว → เต็มแถว ไม่ตกบรรทัด */
+  .h25-foot__nav a{font-size:15px;line-height:34px;}
+  .h25-foot__copy{padding:18px 16px calc(90px + env(safe-area-inset-bottom,0px));font-size:13px;} /* เว้นที่ให้แถบนัดหมายติดล่างจอ */
+}
+
+/* ===================================================================
    Responsive
    =================================================================== */
 @media (max-width:1199px){
@@ -898,10 +1198,29 @@ body{margin:0;} /* ลบขอบขาว 8px ที่เบราว์เ�
   }
   .h25-phone{display:none;}
   .h25-book{display:none;}
-  .h25-lang{display:none;}
+  /* แคปซูล TH|EN มือถือ: ลำดับ 🔍 → TH|EN → ☰ ห่าง 8 · สูง 42 เท่าปุ่ม 🔍 ☰ · วงกลม 34 */
+  .h25-topbar .h25-wrap{gap:8px;}
+  .h25-lang{height:42px;padding:4px;gap:0;flex:none;transition:height var(--dur-m) var(--ease),padding var(--dur-m) var(--ease);}
+  .h25-lang a{width:34px;height:34px;font-size:13px;transition:width var(--dur-m) var(--ease),height var(--dur-m) var(--ease),font-size var(--dur-m) var(--ease);}
+  .h25-header.is-stuck .h25-topbar .h25-lang{height:37px;padding:3.5px;} /* หดตามโลโก้ 128→112 (×0.875) */
+  .h25-header.is-stuck .h25-topbar .h25-lang a{width:30px;height:30px;font-size:12px;}
+  /* header หด: 🔍 และ ☰ หดเป็น 37 เท่าแคปซูล */
+  .h25-iconbtn,.h25-burger{transition:width var(--dur-m) var(--ease),height var(--dur-m) var(--ease),gap var(--dur-m) var(--ease),transform var(--dur-s) var(--ease),box-shadow var(--dur-s) var(--ease);}
+  .h25-iconbtn svg,.h25-burger span,.h25-burger::before,.h25-burger::after{transition:width var(--dur-m) var(--ease),height var(--dur-m) var(--ease);}
+  .h25-header.is-stuck .h25-iconbtn,.h25-header.is-stuck .h25-burger{width:37px;height:37px;}
+  .h25-header.is-stuck .h25-iconbtn svg{width:18px;height:18px;}
+  .h25-header.is-stuck .h25-burger{gap:4px;}
+  .h25-header.is-stuck .h25-burger span,.h25-header.is-stuck .h25-burger::before,.h25-header.is-stuck .h25-burger::after{width:16px;}
+  @media (prefers-reduced-motion:reduce){ .h25-lang,.h25-lang a,.h25-iconbtn,.h25-burger,.h25-iconbtn svg,.h25-burger span,.h25-burger::before,.h25-burger::after{transition:none;} }
   .h25-iconbtn{display:flex;margin-left:auto;}
   .h25-burger{display:flex;}
   .h25-nav{display:none;}
+}
+@media (max-width:374px){ /* จอ 360: ย่อโลโก้ให้ปุ่ม 3 อันไม่ชน */
+  .h25-logo{padding:12px 20px 12px 14px;border-radius:0 0 32px 0;}
+  .h25-logo img{width:112px;}
+  .h25-header.is-stuck .h25-logo{padding:10px 18px 10px 12px;}
+  .h25-header.is-stuck .h25-logo img{width:100px;}
 }
 
 /* ===================================================================
@@ -1044,4 +1363,38 @@ body{margin:0;} /* ลบขอบขาว 8px ที่เบราว์เ�
   .h25-sheet-open,.h25-sheet-open body{overflow:hidden;} /* ล็อกการเลื่อนหน้า */
   .h25-sheet-open .h25-jd-tip{display:none;}
   .h25-totop__tip{display:none;}
+}
+
+/* ===================================================================
+   หน้าอังกฤษ (en/index.html · body[data-lang="en"]) — ใช้ไฟล์นี้ร่วมกับหน้าไทย
+   ปรับเฉพาะจุดที่ข้อความอังกฤษยาวกว่าไทย · ขนาดตัวอักษรเท่าหน้าไทยทุกจุด · หน้าไทยไม่โดนกฎชุดนี้
+   =================================================================== */
+/* Hero: "Your Well-being Begins at Manarom" ขนาดเดียวทั้งบรรทัด ขาว + "Manarom" ฟ้า (วาวากำหนด 25 ต.ค.)
+   · "Well-being" อยู่ใน .h25-hero__nb (nowrap) — ฟอนต์ไม่มี U+2011 จึงใช้ขีดปกติ + ห้ามตัดบรรทัด
+   · ช่องหัวข้อสูงตามเนื้อหา (ขั้นต่ำเท่าหน้าไทย) → ขึ้นหลายบรรทัดก็ดันการ์ดลง ไม่ทับ */
+[data-lang="en"] .h25-hero__intro{height:auto;min-height:162px;padding-bottom:24px;} /* เว้นใต้ H1 ~24 ก่อนการ์ด */
+[data-lang="en"] .h25-hero__title{font-size:clamp(30px,2.8vw,40px);line-height:1.1;hyphens:none;-webkit-hyphens:none;word-break:keep-all;overflow-wrap:normal;}
+[data-lang="en"] .h25-hero__nb{white-space:nowrap;}
+[data-lang="en"] .h25-hero__sub{display:inline;margin:0;color:inherit;font:inherit;}
+[data-lang="en"] .h25-hero__sub b{font-weight:inherit;color:#3AA9F5;}
+/* ชื่อในการ์ด Hero (คอม/แท็บเล็ต): ที่ว่างข้างละ ≥12px ทุกการ์ด — "Mental Health" ยาวสุด
+   25px → 21.5px (≥1200 การ์ด 173) · 21px → 17.5px (768–1199 การ์ด 146) · ลด 10% ไม่พอ (เหลือ 10px / 1px) */
+@media (min-width:768px){
+  [data-lang="en"] .h25-hero__label{padding:0 12px;font-size:21.5px;line-height:25px;}
+}
+@media (min-width:768px) and (max-width:1199px){
+  [data-lang="en"] .h25-hero__label{font-size:17.5px;line-height:21px;}
+}
+@media (max-width:1199px){
+  [data-lang="en"] .h25-hero__intro{min-height:140px;}
+}
+@media (max-width:767px){
+  /* มือถือคงแบบเดิม: แคปซูล 2 บรรทัด "Your Well-being / Begins at Manarom" 20px เท่าหน้าไทย */
+  [data-lang="en"] .h25-hero__intro{min-height:0;padding-bottom:44px;}
+  [data-lang="en"] .h25-hero__title{font-size:20px;line-height:1.4;white-space:normal;text-align:center;border-radius:22px;}
+  [data-lang="en"] .h25-hero__sub{display:block;}
+  [data-lang="en"] .h25-hero__sub b{font-weight:700;}
+  /* ปุ่มบริการ 2 คอลัมน์: ชื่อยาว (Occupational Therapy) ขึ้น 2 บรรทัดแทนการตัด … */
+  [data-lang="en"] .h25-pill{height:auto;min-height:44px;padding-top:6px;padding-bottom:6px;}
+  [data-lang="en"] .h25-pill span{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.3;}
 }
